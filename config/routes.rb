@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'services/edit'
     get 'services/update'
     get 'services/destroy'
-  end
+  end 
   get 'users/show'
   get 'comments/create'
   get 'comments/index'
