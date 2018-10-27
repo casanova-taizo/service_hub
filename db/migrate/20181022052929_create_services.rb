@@ -6,6 +6,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.text :service_img
       t.string :service_campany
       t.text :related_link
+ 	  t.integer :category_id, foreign_key: true
 
       t.timestamps
     end
