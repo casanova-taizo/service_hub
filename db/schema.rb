@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_045811) do
+ActiveRecord::Schema.define(version: 2018_10_27_042801) do
 
   create_table "bad_comments", force: :cascade do |t|
     t.integer "user_id"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 2018_10_24_045811) do
   create_table "bads", force: :cascade do |t|
     t.integer "user_id"
     t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +74,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_045811) do
     t.text "service_img"
     t.string "service_campany"
     t.text "related_link"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
