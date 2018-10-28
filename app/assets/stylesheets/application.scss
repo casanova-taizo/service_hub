@@ -67,3 +67,32 @@ table {
 border-collapse: collapse;
 border-spacing: 0;
 }
+.form-inline{
+  padding-top: 23px;
+  padding-left: 17px;
+  float: left;
+}
+
+.log_out_icon{
+  float:right;
+  padding-top:22px;
+  padding-right:40px;
+}
+
+.header-icon{
+  padding-top: 10px;
+  padding-left: 220px;
+}
+
+.nav{
+ padding-left: 30px;
+ padding-top: 20px;
+}
+.nav-item{
+  display: inline-block !important;
+  width :150px;
+  text-align: center;
+}
+.nav-link{
+  display: inline !important;
+}

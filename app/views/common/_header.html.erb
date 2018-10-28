@@ -1,0 +1,52 @@
+<nav class="navbar navbar-light bg-light">
+<div class = "header-top">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="検索する" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索する</button>
+  </form>
+  <div class = "header-icon">
+    <%= link_to "#" do %>
+    <%= image_tag 'header-icon.png', :class => "header-icon" %>
+    <% end %>
+    <%= link_to "ログアウト","#",class: "log_out_icon" %>
+  </div>
+
+  <%# if user_signed_in? %>
+
+  <%# else %>
+    <%#= link_to "ログイン", "#" %>
+  <%# end %>
+</div>
+<div class = "header-bottom">
+<div class="header-bottom"></div>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">トップ</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">テクノロジー</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">FinTech</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Helth Tech</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">アプリ</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">HR Tech</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">SNS</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">to B</a>
+    </li>
+  </ul>
+</div>
+</nav>
+
+
+
