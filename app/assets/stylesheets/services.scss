@@ -1,3 +1,28 @@
 // Place all the styles related to the Services controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.left-sidebar {
+	width :196px;
+	height :2000px;
+	float :left;
+}
+.main-service {
+	float:left;
+	width:800px;
+	margin:0 auto;
+}
+#slide-service {
+	width :100%;
+	height :400px;
+}
+.service-top {
+	width :641px;
+	height :322px;
+	background-color :#FFE4C4;
+}
+.right-sidebar {
+	width :196px;
+	height :2000px;
+	float :right;
+}
