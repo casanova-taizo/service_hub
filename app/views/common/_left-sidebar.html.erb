@@ -2,8 +2,8 @@
     <div class="card-side card">
       <p class="card-text">あなた</p>
       <%= image_tag 'megane-ojisan-logo.png', class: "card-img-top" %>
-      <div class="card-body">
-        <p class="card-text"><%= if current_user%>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
+      <div class="card-body user_status"><%= current_user.status.status_name%></div>
     </div>
-  </div>
+    <h2>タイムライン</h2>
+    <%= render feed_contents%>
+</div>
