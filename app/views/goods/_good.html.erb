@@ -1,0 +1,11 @@
+<div class="card card-side">
+  <div class="card-body">
+    <p class="card-text"><%= good.user.status.status_name %></p>
+    <p><%= time_ago_in_words(good.created_at) %> ago</br><%= good.user.id_random%></p>
+  </div>
+  <%= image_tag 'service-image.png', class: "card-img-top" %>
+  <div class="card-body">
+    <p class="card-text"><%= good.service.service_name%></br><%= good.service.service_summary%></p>
+  </div>
+  <%= image_tag 'good-feed.png', class: "card-img-top" %>
+</div>
