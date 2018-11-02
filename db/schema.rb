@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_27_042801) do
+ActiveRecord::Schema.define(version: 2018_11_02_074843) do
 
   create_table "bad_comments", force: :cascade do |t|
     t.integer "user_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_042801) do
 
   create_table "bads", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "comment_id"
+    t.integer "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2018_10_27_042801) do
   create_table "comments", force: :cascade do |t|
     t.text "comment_content"
     t.integer "user_id"
-    t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "service_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_042801) do
 
   create_table "goods", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "comment_id"
+    t.integer "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
