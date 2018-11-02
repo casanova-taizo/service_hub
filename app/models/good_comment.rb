@@ -1,0 +1,2 @@
+class GoodComment < ApplicationRecord
+end
