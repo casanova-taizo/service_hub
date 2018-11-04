@@ -1,0 +1,34 @@
+<div>
+	<button type="post" style="width: 300px; height: 50px" >
+		<a href="/admin/services/new">新規作成</a>
+	</button>
+</div>
+<h1>一覧</h1>
+<pre>
+<table>
+	<tr>
+		<th>id </th>
+		<th>service_name </th>
+		<th>service_summary </th>
+		<th>service_img </th>
+		<th>service_campany </th>
+		<th>related_link </th>
+		<th>category_id </th>
+		<th></th>
+		<th></th>
+	</tr>
+	<% @services.each do |service| %>
+	<tr>
+		<td><%= service.id %></td>
+		<td><%= service.service_name %></td>
+		<td><%= service.service_summary %></td>
+		<td><%= service.service_img %></td>
+		<td><%= service.service_campany %></td>
+		<td><%= service.related_link %></td>
+		<td><%= service.category_id %></td>
+		<td><%= link_to "編集",  edit_admin_service_path(service.id) %></td>
+		<td><%= link_to "削除",  admin_servicey_path(service.id), method: :delete %></td>
+	</tr>
+	<% end %>
+</table>
+</pre>
