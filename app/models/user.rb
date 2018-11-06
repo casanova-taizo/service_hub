@@ -11,3 +11,5 @@ class User < ApplicationRecord
   has_many :good_comments
   has_many :bad_comments
 end
+
+

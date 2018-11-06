@@ -97,12 +97,31 @@ border-spacing: 0;
   display: inline !important;
 }
 
-.card-side{
+.left-sidebar{
+.card-side {
   margin: 0px;
   width: 100%;
 }
 
+.card-text {
+  margin: 0 auto;
+  padding: 8%;
+}
+
+.card img {
+    width: 41%;
+    height: 114px;
+    background-color:white;
+    margin: 0 auto;
+    padding-bottom: 8%;
+}
 .user_status{
   background-color: black;
   color: white;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
+}
+
+
