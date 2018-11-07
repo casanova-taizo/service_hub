@@ -14,6 +14,7 @@
 		<th>service_campany </th>
 		<th>related_link </th>
 		<th>category_id </th>
+		<th>tag </th>
 		<th></th>
 		<th></th>
 	</tr>
@@ -22,12 +23,17 @@
 		<td><%= service.id %></td>
 		<td><%= service.service_name %></td>
 		<td><%= service.service_summary %></td>
-		<td><%= service.service_img %></td>
+		<% if service.service_image.present? %>
+			<td><%= attachment_image_tag service, :service_image, :fill, 100, 100, format: 'jpeg' %></td>
+			<% else %>
+			<th>No Image </th>
+		<% end %>
 		<td><%= service.service_campany %></td>
 		<td><%= service.related_link %></td>
 		<td><%= service.category_id %></td>
+		<td><%= service.tag_list %></td>
 		<td><%= link_to "編集",  edit_admin_service_path(service.id) %></td>
-		<td><%= link_to "削除",  admin_servicey_path(service.id), method: :delete %></td>
+		<td><%= link_to "削除",  admin_service_path(service.id), method: :delete %></td>
 	</tr>
 	<% end %>
 </table>
