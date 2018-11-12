@@ -1,0 +1,11 @@
+<div class="card card-side">
+  <div class="card-body">
+    <p class="card-text"><%= bad.user.status.status_name %></p>
+    <p><%= time_ago_in_words(bad.created_at) %> ago</br><%= bad.user.id_random%></p>
+  </div>
+  <%= image_tag 'service-image.png', class: "card-img-top" %>
+  <div class="card-body">
+    <p class="card-text"><%= bad.service.service_name%><br><%= bad.service.service_summary%></p>
+  </div>
+  <%= image_tag 'bad-feed.png', class: "card-img-top" %>
+</div>

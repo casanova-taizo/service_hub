@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+// トップページ
 #top {
 	width: 100%;
 }
@@ -164,6 +171,204 @@
     text-align: center;
     padding: 50px;
 }
+
+// サービス詳細ページ
+#service-show {
+	width:100%;
+}
+.service-show {
+	float: left;
+	width: 68%;
+}
+.service-info {
+	width: 100%;
+}
+.comment-service {
+	width: 100%;
+}
+.service-img {
+	width: 100%;
+	height: 450px;
+	background-color: #4544AD;
+}
+.service-contents {
+	width: 100%;
+	padding: 30px;
+}
+.service-name {
+	font-size: 50px;
+}
+.service-tag {
+	display: inline-block;
+	border: solid 1px black;
+	border-radius: 5px;
+	margin-right: 5px;
+	padding-right: 3px;
+	padding-left: 5px;
+}
+.service-comment-star {
+	margin-top: 20px;
+	font-size: 25px;
+	i {
+		margin-right: 10px;
+	}
+}
+.goodbad-line {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	}
+.goodbad-graph {
+	position: relative;
+    width: 90%;
+    border: 1px solid #207870;
+    padding: 2px;
+    display: inline-block;
+}
+.goodbad-graph .good-point {
+	display: block;
+    position: relative;
+    background: black;
+    text-align: center;
+    color: #f0ffff;
+    height: 3em;
+    line-height: 3em;
+    font-size: 20px;
+}
+.goodbad-graph .good-point span {
+	position: absolute;
+	left: 1em;
+}
+
+.service-contents-table {
+	margin: 0 auto;
+	width: 80%;
+	tbody {
+		line-height: 40px;
+	}
+	.table-left {
+		width: 20%;
+	}
+	.table-right {
+		width: 80%;
+		line-height: 20px;
+	}
+}
+.split {
+	width: 80%;
+	height: 2px;
+	background-color: #777777;
+	margin: 0 auto;
+}
+.evaluation-box {
+	width: 90%;
+    padding: 30px;
+    text-align: center;
+    margin: 0 auto;
+}
+.evaluation-table {
+	width: 100%;
+	th {
+		width: 33%;
+		font-weight: 900;
+	}
+	td {
+		width: 33%;
+	}
+	a {
+		text-decoration: none;
+		color: #888888;
+		font-size: 50px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+	a:hover {
+		color: black;
+	}
+}
+.comment-btn {
+	background-color: black;
+	margin-top: 30px;
+	color: white;
+}
+.comment-service {
+	width: 100%;
+	text-align: center;
+}
+.service-topic-comment {
+	padding: 30px;
+}
+.topic-comment-section {
+	font-weight: 900;
+	margin-bottom: 30px;
+}
+.topic-comment-box {
+	width: 90%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	.topic-comment-box-left {
+		width: 30%;
+		float: left;
+		text-align: right;
+		margin-right: 3%;
+	}
+	.topic-comment-box-right {
+		width: 67%;
+		float: right;
+		text-align: left;
+	}
+	.commenter-role {
+		font-weight: 900;
+	}
+	.comment-number {
+		font-size: 40px;
+		color: #888888;
+	}
+	.commenter-id {
+		margin: 0;
+	}
+	.comment-time-ago {
+		font-size: 8px;
+		color: #888888;
+	}
+	.commenter-comment {
+		line-height: 20px;
+	}
+	.comment-reaction {
+		margin-top: 20px;
+		padding-bottom: 20px;
+		border-bottom: solid 1px #9999;
+	}
+	.rep-icon {
+		font-size: 20px;
+		color: #777777;
+		margin-right: 35%;
+	}
+	.rep-icon:hover {
+		color: black;
+	}
+	a {
+		text-decoration: none;
+		color: #888888;
+		font-size: 20px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+	a:hover {
+		color: black;
+	}
+	.re-react-btn {
+		text-decoration: none;
+		color: #888888;
+		font-size: 20px;
+		margin-right: 0;
+		margin-left: 20px;
+	}
+	.re-react-btn:hover {
+		color:black;
+	}
+
+}
+
 
 
 
