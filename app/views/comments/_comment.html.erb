@@ -1,0 +1,8 @@
+<div class="card card-side">
+  <div class="card-body">
+    <h5 class="card-title"><%= comment.user.status.status_name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= time_ago_in_words(comment.created_at) %> ago</br><%= comment.user.id_random%></h6>
+    <p class="card-text"><%= comment.comment_content%></p>
+    <a href="#" class="card-link">Card link</a>
+  </div>
+</div>

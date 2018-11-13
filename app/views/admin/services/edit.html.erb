@@ -1,0 +1,17 @@
+<%= form_for(@service, url:{controller: 'services', action:'update' , id: @service.id}) do |form| %>
+	<p>サービス名</p>
+	<%= form.text_field :service_name %>
+	<p>概要</p>
+	<%= form.text_field :service_summary %>
+	<p>画像</p>
+	<%= form.attachment_field :service_image %>
+	<p>会社</p>
+	<%= form.text_field :service_campany %>
+	<p>サービスページ</p>
+	<%= form.text_field :related_link %>
+	<p>カテゴリID</p>
+	<%= form.text_field :category_id %>
+	<p>タグ</p>
+	<%= form.text_field :tag_list %>
+	<%= form.submit "送信"%>
+<%	end %>

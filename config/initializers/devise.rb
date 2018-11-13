@@ -2,6 +2,7 @@
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+Refile.secret_key = '9e0325b3d6aaf8cdb0548e4f41cd894ccdab35dfbc1ac6f1032677ef25b2c01c78d84b5c0f143e85500e6ee7b713c064c62f422b8978bc9c8bb4e553763449e5'
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
