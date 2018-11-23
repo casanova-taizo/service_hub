@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_11_06_154840) do
-
-
-
+ActiveRecord::Schema.define(version: 2018_11_14_074005) do
 
   create_table "bad_comments", force: :cascade do |t|
     t.integer "user_id"
@@ -81,10 +77,11 @@ ActiveRecord::Schema.define(version: 2018_11_06_154840) do
   create_table "services", force: :cascade do |t|
     t.string "service_name"
     t.text "service_summary"
-    t.text "service_img"
+    t.string "service_image"
     t.string "service_campany"
     t.text "related_link"
     t.integer "category_id"
+    t.text "tag_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "service_image_id"
@@ -129,9 +126,10 @@ ActiveRecord::Schema.define(version: 2018_11_06_154840) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "id_random"
-    t.integer "status_id"
+    t.integer "status_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 2, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
