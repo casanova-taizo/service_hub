@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :comments
   has_many :good_comments
   has_many :bad_comments
+
+  enum role: { admin: 1, user: 2 }
+
 end
 
 
