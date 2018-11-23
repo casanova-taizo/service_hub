@@ -6,9 +6,9 @@
   </form>
   <div class = "header-icon">
     <%= link_to "#" do %>
-    <%= image_tag 'header-icon.png', :class => "header-icon" %>
+    <%= image_tag 'header-icon.png', class: "header-icon" %>
     <% end %>
-    <%= link_to "ログアウト","#",class: "log_out_icon" %>
+    <%= link_to "ログアウト", destroy_user_session_path , :method => "delete", class: "log_out_icon" %>
   </div>
 
   <%# if user_signed_in? %>
