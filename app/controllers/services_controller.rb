@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   def index
     feed_contents = FeedContent.all
     @feed_contents = feed_contents.map(&:content)
-    # @services = 
+    @services = Service.all
   end
 
   def show
