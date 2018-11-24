@@ -38,18 +38,11 @@
 	width: 100%;
 	height: 100%;
 }
-.service-top:nth-of-type(1) {
-	background-color: red;
+.service_image_top {
+	width: 100%;
+	height: 100%;
 }
-.service-top:nth-of-type(2) {
-	background-color: blue;
-}
-.service-top:nth-of-type(3) {
-	background-color: green;
-}
-.service-top:nth-of-type(4) {
-	background-color: yellow;
-}
+
 #trend {
 	width: 100%;
 	text-align: center;
@@ -83,6 +76,7 @@
 	.service-outline {
 	font-size: 15px;
 	margin-bottom: 0;
+	height: 80px;
 	}
 	.goodbad-line {
 	margin-top: 15px;

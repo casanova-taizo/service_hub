@@ -2,22 +2,21 @@
   <%= render partial: "common/left-sidebar",locals: { feed_contents: @feed_contents } %>
 	<div class="main-service">
 		<div id="slide-service">
-
 	        <div id="theTarget">
-	            <a class="service-top">A</a>
-	            <a class="service-top">B</a>
-	            <a class="service-top">C</a>
-	            <a class="service-top">D</a>
+	        	<% @services.each do |service| %>
+	            <a class="service-top"><%= attachment_image_tag service, :service_image, :fill,600,300, class: "service_image_top" %></a>
+	            <% end %>
 	        </div>
 		</div>
 		<div id="trend" class="clearfix">
 			<h3 class="thisweek-trend">今週のトレンド <i class="fas fa-chart-line"></i>
 			</h3>
+			<% @services_trend.each do |service_trend| %>
 			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
+				<%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
   				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
+    				<a class="service-title" href="#"><%= service_trend.service_name %></a>
+    				<p class="service-outline"><%= service_trend.service_summary %></p>
     				<i class="far fa-comment"></i>20
     				<i class="far fa-star"></i>100 <br>
     				<div class="goodbad-line">
@@ -33,66 +32,7 @@
 					</div>
   				</div>
 			</div>
-			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
-  				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
-    				<i class="far fa-comment"></i>20
-    				<i class="far fa-star"></i>100 <br>
-    				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
-    					<div class="goodbad-graph">
-    						<span class="good-point" style="width:70%;">70%</span>
-    					</div>
-    					<i class="far fa-thumbs-down"></i>
-    				</div>
-					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
-					</div>
-  				</div>
-			</div>
-			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
-  				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
-    				<i class="far fa-comment"></i>20
-    				<i class="far fa-star"></i>100 <br>
-    				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
-    					<div class="goodbad-graph">
-    						<span class="good-point" style="width:70%;">70%</span>
-    					</div>
-    					<i class="far fa-thumbs-down"></i>
-    				</div>
-					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
-					</div>
-  				</div>
-			</div>
-			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
-  				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
-    				<i class="far fa-comment"></i>20
-    				<i class="far fa-star"></i>100 <br>
-    				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
-    					<div class="goodbad-graph">
-    						<span class="good-point" style="width:70%;">70%</span>
-    					</div>
-    					<i class="far fa-thumbs-down"></i>
-    				</div>
-					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
-					</div>
-  				</div>
-			</div>
+			<% end %>
 		</div>
 		<div id="comment">
 			<h3 class="topic-comment">話題のコメント <i class="fas fa-fire"></i>
