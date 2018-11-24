@@ -1,0 +1,15 @@
+<div class="left-sidebar">
+    <p class="card-text">新着サービス</p>
+    <% services.each do |service| %>
+      <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <a class="service-title" href="#"><%= service.service_name%></a>
+            <p class="service-outline"><%= service.service_summary%></p>
+            <p class="service-outline">
+              <% service.tag_list.each do |tag| %>#<%=tag%><%end%>
+            </p>
+          </div>
+      </div>
+    <% end%>
+</div>
