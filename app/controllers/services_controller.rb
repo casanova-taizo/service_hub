@@ -4,10 +4,11 @@ class ServicesController < ApplicationController
     @feed_contents = feed_contents.map(&:content)
     @services = Service.limit(3).order("id DESC")
     @services_trend = Service.limit(4).order("id DESC")
-
   end
 
   def show
+    @service = Service.find(params[:id])
+    @comment_new = Comment.new
   end
 
   def new

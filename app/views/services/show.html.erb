@@ -1,14 +1,17 @@
+<link rel="stylesheet" href="modaal.min.css">
+<script src="modaal.min.js"></script>
 <div id="service-show">
 	<div class="left-sidebar"></div>
 	<div class="service-show">
 		<div class="service-info">
-			<div class="service-img"></div>
+			<%= attachment_image_tag @service, :service_image, :fill,600,300, class: "service-img" %>
 			<div class="service-contents">
-				<h3 class="service-name">DRERICH</h3>
+				<h3 class="service-name"><%= @service.service_name %></h3>
 				<div class="service-tags">
-					<a class="service-tag">ブライダル</a>
-					<a class="service-tag">F1</a>
-					<a class="service-tag">インフルエンサーマーケ</a>
+					<% @service.tag_list.each do |tag| %>
+						<%=link_to tag, "#", class: "service-tag" %>
+					<% end %>
+					<!-- <a class="service-tag">インフルエンサーマーケ</a> -->
 				</div>
 				<div class="service-comment-star">
 					<i class="far fa-comment">20</i>
@@ -30,16 +33,20 @@
     				<tr>
     					<td class="table-left">サービスページ</td>
     					<td class="table-right">
-    						<a href="https://choice-dinner.herokuapp.com/"></a>https://choice-dinner.herokuapp.com/
+    						<%= @service.related_link %>
     					</td>
     				</tr>
     				<tr>
     					<td class="table-left">運営会社</td>
-    					<td class="table-right">株式会社ドレリッチ</td>
+    					<td class="table-right">
+    						<%= @service.service_campany %>
+    					</td>
     				</tr>
     				<tr>
     					<td class="table-left">サービス概要</td>
-    					<td class="table-right">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</td>
+    					<td class="table-right">
+							<%= @service.service_summary %>
+    					</td>
     				</tr>
     				<tr>
     					<td class="table-left">関連リンク</td>
@@ -67,7 +74,15 @@
 					<td><a href="#" class="fas fa-copy"></a><a href="#" class="fab fa-twitter-square"></a><a href="#" class="fab fa-facebook"></a></td>
 				</tr>
 			</table>
-			<button type="button" class="btn  btn-lg btn-block comment-btn">コメントする</button>
+			<a href="#modal" class="btn btn-lg btn-block comment-btn">コメントする</a>
+			<div id="modal" style="display:none;">
+				<p class="modal-service-subtitle">匿名サービスレビュープラットフォーム</p>
+				<h3 class="modal-service-title">ServiceHub</h3>
+				<%= form_for([@service, @comment_new]) do |f| %>
+					            <%= f.text_area :comment_content, rows:'5', class: "form-control",placeholder: "何者でもないあなたの,サービスに対する気まぐれな意見を,記入する" %>
+					            <%= f.submit "送信する", class: "btn btn-lg btn-block comment-btn" %>
+				<% end %>
+			</div>
 		</div>
 		<div class="split"></div>
 		<div class="comment-service">
