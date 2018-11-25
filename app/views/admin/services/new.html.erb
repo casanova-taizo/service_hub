@@ -10,7 +10,9 @@
 	<p>サービスページ</p>
 	<%= form.text_field :related_link %>
 	<p>カテゴリID</p>
-	<%= form.text_field :category_id %>
+	<%#= form_for @categories do |f| %>
+  		<%= form.collection_select :category_id, Category.all, :id, :category_name %>
+	<%#- end -%>
 	<p>タグ</p>
 	<%= form.text_field :tag_list %>
 	<%= form.submit "送信"%>

@@ -9,6 +9,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    @category = Category.new(catregory_params)
+    @category.save
   end
 
   def edit
@@ -18,5 +20,10 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def catregory_params
+    params.require(:category).permit(:category_name)
   end
 end

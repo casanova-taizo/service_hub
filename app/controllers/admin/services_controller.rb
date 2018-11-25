@@ -34,7 +34,7 @@ class Admin::ServicesController < ApplicationController
 
   private
   def service_params
-    params.require(:service).permit(:service_name, :service_summary, :service_image,:service_campany, :related_link, :category_id, :tag_list)
+    params.require(:service).permit(:service_name, :service_summary, :service_image, :service_campany, :related_link, :category_id, :tag_list)
   end
 end
 
