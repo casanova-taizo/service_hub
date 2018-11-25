@@ -200,6 +200,11 @@
 	margin-right: 5px;
 	padding-right: 3px;
 	padding-left: 5px;
+	text-decoration: none !important;
+}
+.service-tag:hover {
+	background-color: white;
+	color: black;
 }
 .service-comment-star {
 	margin-top: 20px;
@@ -280,6 +285,16 @@
 		color: black;
 	}
 }
+
+//モーダル部分
+
+.modaal-content-container {
+	text-align: center;
+	
+
+}
+
+
 .comment-btn {
 	background-color: black;
 	margin-top: 30px;

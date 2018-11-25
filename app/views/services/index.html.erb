@@ -15,7 +15,7 @@
 			<div class="card" style="width: 40%;">
 				<%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
   				<div class="card-body">
-    				<a class="service-title" href="#"><%= service_trend.service_name %></a>
+    				<%=link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
     				<p class="service-outline"><%= service_trend.service_summary %></p>
     				<i class="far fa-comment"></i>20
     				<i class="far fa-star"></i>100 <br>
