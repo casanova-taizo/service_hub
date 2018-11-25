@@ -6,7 +6,7 @@ class User < ApplicationRecord
   belongs_to :status
   has_many :goods
   has_many :bads
-  has_many :favorites
+  has_many :services, through: :favorites
   has_many :comments
   has_many :good_comments
   has_many :bad_comments
