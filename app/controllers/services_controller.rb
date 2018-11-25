@@ -9,6 +9,8 @@ class ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @comment_new = Comment.new
+
+
   end
 
   def new
