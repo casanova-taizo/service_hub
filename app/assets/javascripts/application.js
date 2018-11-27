@@ -46,6 +46,6 @@ $("#theTarget").skippr({
     hidePrevious : false
 });
 });
- $('.comment-btn').modaal();
+ $('.comment-btn-modal').modaal();
 
 });

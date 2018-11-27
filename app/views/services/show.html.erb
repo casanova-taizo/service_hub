@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="modaal.min.css">
 <script src="modaal.min.js"></script>
 <div id="service-show">
-	<div class="left-sidebar"></div>
+	<%= render partial: "common/left-sidebar",locals: { feed_contents: @feed_contents } %>
 	<div class="service-show">
 		<div class="service-info">
 			<%= attachment_image_tag @service, :service_image, :fill,600,300, class: "service-img" %>
@@ -14,8 +14,8 @@
 					<!-- <a class="service-tag">インフルエンサーマーケ</a> -->
 				</div>
 				<div class="service-comment-star">
-					<i class="far fa-comment">20</i>
-    				<i class="far fa-star">100</i>
+					<i class="far fa-comment"><%= @service.goodcount %></i>
+    				<i class="far fa-star"><%= @service.favorites.count %></i>
 				</div>
 				<div class="goodbad-line">
    					<i class="far fa-thumbs-up"></i>
@@ -33,7 +33,7 @@
     				<tr>
     					<td class="table-left">サービスページ</td>
     					<td class="table-right">
-    						<%= @service.related_link %>
+    						<%=link_to @service.related_link , "@service.related_link" %>
     					</td>
     				</tr>
     				<tr>
@@ -67,13 +67,44 @@
 					<th>シェアする</th>
 				</tr>
 				<tr>
+					<td><% if @service.gooded_by?(current_user) %>
+							<%= link_to service_goods_path(@service), method: :delete do  %>
+							<i class="fas fa-thumbs-up" style="color: black;"></i>
+							<% end %>
+						<% else %>
+							<%= link_to service_goods_path(@service), method: :post do  %>
+							<i class="far fa-thumbs-up" ></i>
+							<% end %>
+						<% end %>
+						<% if @service.baded_by?(current_user) %>
+							<%= link_to service_bads_path(@service), method: :delete do  %>
+							<i class="fas fa-thumbs-down" style="color: black;"></i>
+							<% end %>
+						<% else %>
+							<%= link_to service_bads_path(@service), method: :post do  %>
+							<i class="far fa-thumbs-down" ></i>
+							<% end %>
+						<% end %>
+					</td>
 					<td>
-						<a href="#" class="far fa-thumbs-up"></a><a href="#" class="far fa-thumbs-down"></a>
-					</td><a href="#" class="far fa-star"></a></td>
-					<td><a href="#" class="fas fa-copy"></a><a href="#" class="fab fa-twitter-square"></a><a href="#" class="fab fa-facebook"></a></td>
+						<% if @service.favorited_by?(current_user) %>
+							<%= link_to service_favorites_path(@service), method: :delete do %>
+							<i class="fas fa-star" style="color: #FFD700	;"></i>
+							<% end %>
+						<% else %>
+							<%= link_to service_favorites_path(@service), method: :post do %>
+							<i class="far fa-star"></i>
+							<% end %>
+						<% end %>
+					</td>
+					<td>
+						<a href="#" class="fas fa-copy"></a>
+						<a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="fab fa-facebook"></a>
+						<a href="https://twitter.com/share?url=<%= request.url %>&text=『<%=@service.service_name%>』について議論しよう" rel="nofollow" target="_blank" class="fab fa-twitter-square"></a>
+					</td>
 				</tr>
 			</table>
-			<a href="#modal" class="btn btn-lg btn-block comment-btn">コメントする</a>
+			<a href="#modal" class="btn btn-lg btn-block comment-btn-modal">コメントする</a>
 			<div id="modal" style="display:none;">
 				<p class="modal-service-subtitle">匿名サービスレビュープラットフォーム</p>
 				<h3 class="modal-service-title">ServiceHub</h3>
@@ -87,133 +118,102 @@
 		<div class="comment-service">
 			<div class="service-topic-comment">
 				<h3 class="topic-comment-section">話題のコメント</h3>
+				<% @comment_trend.each do |comment| %>
 				<div class="topic-comment-box clearfix">
 					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
+						<h5 class="commenter-role"><%= comment.user.status.status_name %></h5>
 						<p class="comment-number">5</p>
 					</div>
 					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
+						<h6 class="commenter-id"><%= comment.user.id %></h6>
+						<p class="comment-time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+						<div class="commenter-comment"><%= comment.comment_content %></div>
 						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
+							<% if comment.comment_gooded_by?(current_user) %>
+								<%= link_to service_comment_good_comments_path(@service.id, comment), method: :delete do %>
+									<i class="fas fa-thumbs-up" style="color:black;"></i>
+									<%= comment.good_comments.count %>
+								<% end %>
+							<% else %>
+								<%= link_to service_comment_good_comments_path(@service.id, comment), method: :post do %>
+									<i class="far fa-thumbs-up"></i>
+									<%= comment.good_comments.count %>
+								<% end %>
+							<% end %>
+
+							<% if comment.comment_baded_by?(current_user) %>
+								<%= link_to service_comment_bad_comments_path(@service.id, comment), method: :delete do %>
+									<i class="fas fa-thumbs-down" style="color:black;"></i>
+									<%= comment.bad_comments.count %>
+								<% end %>
+							<% else %>
+								<%= link_to service_comment_bad_comments_path(@service.id, comment), method: :post do %>
+									<i class="far fa-thumbs-down"></i>
+									<%= comment.bad_comments.count %>
+								<% end %>
+							<% end %>
 
 						</div>
 					</div>
 				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
+				<% end %>
 			</div>
 			<div class="service-topic-comment">
 				<h3 class="topic-comment-section">新着コメント</h3>
+				<% @comments_latest.each do |comment_latest| %>
 				<div class="topic-comment-box clearfix">
 					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
+						<h5 class="commenter-role">
+							<%= comment_latest.user.status.status_name %>
+						</h5>
 						<p class="comment-number">5</p>
 					</div>
 					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
+						<h6 class="commenter-id"><%= comment_latest.user.id %></h6>
+						<p class="comment-time-ago"><%= time_ago_in_words(comment_latest.created_at) %> ago ago</p>
+						<div class="commenter-comment"><%= comment_latest.comment_content %></div>
 						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
+							<i class="fas fa-reply rep-icon"> 33
+							</i>
+							<% if comment_latest.comment_gooded_by?(current_user) %>
+								<%= link_to service_comment_good_comments_path(@service.id, comment_latest), method: :delete do %>
+									<i class="fas fa-thumbs-up" style="color:black;"></i>
+									<%= comment_latest.good_comments.count %>
+								<% end %>
+							<% else %>
+								<%= link_to service_comment_good_comments_path(@service.id, comment_latest), method: :post do %>
+									<i class="far fa-thumbs-up"></i>
+									<%= comment_latest.good_comments.count %>
+								<% end %>
+							<% end %>
+
+							<% if comment_latest.comment_baded_by?(current_user) %>
+								<%= link_to service_comment_bad_comments_path(@service.id, comment_latest), method: :delete do %>
+									<i class="fas fa-thumbs-down" style="color:black;"></i>
+									<%= comment_latest.bad_comments.count %>
+								<% end %>
+							<% else %>
+								<%= link_to service_comment_bad_comments_path(@service.id, comment_latest), method: :post do %>
+									<i class="far fa-thumbs-down"></i>
+									<%= comment_latest.bad_comments.count %>
+								<% end %>
+							<% end %>
+
+
+							<a href="#" class="far fa-thumbs-down">
+							50
+							</a>
+							<a href="#" class="re-react-btn">返信する
+							</a>
 
 						</div>
 					</div>
 				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
-				<div class="topic-comment-box clearfix">
-					<div class="topic-comment-box-left">
-						<h5 class="commenter-role">フリーター</h5>
-						<p class="comment-number">5</p>
-					</div>
-					<div class="topic-comment-box-right">
-						<h6 class="commenter-id">asdanj3813</h6>
-						<p class="comment-time-ago">1h ago</p>
-						<div class="commenter-comment">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪どうあくな種族であったそうだ。この書生というのは時々我々を捕つかまえて煮にて食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌てのひらに載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</div>
-						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33</i><a href="#" class="far fa-thumbs-up">300</a><a href="#" class="far fa-thumbs-down">50</a><a href="#" class="re-react-btn">返信する</a>
-
-						</div>
-					</div>
-				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
-	<div class="right-sidebar"></div>
+	<%= render partial: "common/right-sidebar",locals: { services: @services } %>
 </div>
 <script src="/javascripts/skippr.min.js"></script>
 
