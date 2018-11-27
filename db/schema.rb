@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 2018_11_24_110922) do
 
   create_table "services", force: :cascade do |t|
     t.string "service_name"
+    t.string "service_releasetime"
     t.text "service_summary"
     t.string "service_campany"
+    t.text "service_link"
     t.text "related_link"
     t.integer "category_id"
     t.text "tag_list"
