@@ -13,9 +13,15 @@ class ServicesController < ApplicationController
     @feed_contents = feed_contents.map(&:content)
     @services= Service.all
     @service = Service.find(params[:id])
-    @comment_trend = @service.comments.limit(3).order("goodcount DESC")
+    @comment_trend = @service.comments.where(reply_comment: nil).limit(3).order("goodcount DESC")
     @comment_new = Comment.new
-    @comments_latest = @service.comments.order("id DESC")
+    @comments_latest = @service.comments.where(reply_comment: nil).order("id DESC")
+    @comments_for_comment = @service.comments
+    begin
+      @good_ratio = @service.goods.size*100/(@service.goods.size + @service.bads.size)
+    rescue
+      @good_ratio = 0
+    end
   end
 
   def new

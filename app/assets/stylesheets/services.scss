@@ -41,6 +41,8 @@
 .service_image_top {
 	width: 100%;
 	height: 100%;
+    background-color: rgba(0,0,0,0.3);
+
 }
 
 #trend {
@@ -79,12 +81,13 @@
 	height: 80px;
 	}
 	.goodbad-line {
+	text-align: center;
 	margin-top: 15px;
 	margin-bottom: 20px;
 	}
 	.goodbad-graph {
 		position: relative;
-	    width: 86%;
+	    width: 75%;
 	    border: 1px solid #207870;
 	    padding: 2px;
 	    display: inline-block;
@@ -313,16 +316,16 @@
 }
 .topic-comment-box {
 	width: 90%;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin: 30px auto;
+	border-bottom: solid 1px #9999;
 	.topic-comment-box-left {
-		width: 30%;
+		width: 20%;
 		float: left;
 		text-align: right;
 		margin-right: 3%;
 	}
 	.topic-comment-box-right {
-		width: 67%;
+		width: 75%;
 		float: right;
 		text-align: left;
 	}
@@ -346,7 +349,6 @@
 	.comment-reaction {
 		margin-top: 20px;
 		padding-bottom: 20px;
-		border-bottom: solid 1px #9999;
 	}
 	.rep-icon {
 		font-size: 20px;
@@ -366,6 +368,15 @@
 	a:hover {
 		color: black;
 	}
+	.comment-comment-box {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.comment-for-comment-form {
+	}
+	.btn {
+		float: right;
+	}
 	.re-react-btn {
 		text-decoration: none;
 		color: #888888;
@@ -376,8 +387,24 @@
 	.re-react-btn:hover {
 		color:black;
 	}
+	.topic-comment-box-for-comment {
+		width:80%;
+		float: right;
+	}
+	.topic-comment-box-left-for-comment {
+		width: 20%;
+		float: left;
+		text-align: right;
+		margin-right: 3%;
+	}
+	.topic-comment-box-right-for-comment {
+		width: 75%;
+		float: right;
+		text-align: left;
+	}
 
 }
+
 
 
 

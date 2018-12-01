@@ -22,17 +22,17 @@
     				<i class="far fa-comment"></i><%= service_trend.goodcount %>
     				<i class="far fa-star"></i><%= service_trend.favorites.count %><br>
     				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
+    					<i class="far fa-thumbs-up"><%= service_trend.goods.count %></i>
     					<div class="goodbad-graph">
     						<% good_ratio = service_trend.goods.count*100/(service_trend.goods.count + service_trend.bads.count) %>
     						<span class="good-point" style="width: <%= good_ratio %>% ;">
     							<%= good_ratio %>%
     						</span>
     					</div>
-    					<i class="far fa-thumbs-down"></i>
+    					<i class="far fa-thumbs-down"><%= service_trend.bads.count %></i>
     				</div>
 					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
+							<span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
 							<a class="new-comment-content" href="#"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></a>
 					</div>
   				</div>
@@ -81,11 +81,11 @@
     				<i class="far fa-comment"></i><%= service.goodcount %>
     				<i class="far fa-star"></i>100 <br>
     				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
+    					<i class="far fa-thumbs-up"><%= service.goods.count %></i>
     					<div class="goodbad-graph">
     						<span class="good-point" style="width:70%;">70%</span>
     					</div>
-    					<i class="far fa-thumbs-down"></i>
+    					<i class="far fa-thumbs-down"><%= service.bads.count %></i>
     				</div>
 					<div class="new-comment">
 							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
