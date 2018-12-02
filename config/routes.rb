@@ -13,8 +13,13 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
 
   resources :services do
-    resource :comments
-    resource :favorites, only: [:create]
+    resources :comments do
+      resource :good_comments
+      resource :bad_comments
+    end
+    resource :goods
+    resource :bads
+    resource :favorites, only: [:create, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

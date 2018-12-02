@@ -4,7 +4,9 @@
 		<div id="slide-service">
 	        <div id="theTarget">
 	        	<% @services.each do |service| %>
-	            <a class="service-top"><%= attachment_image_tag service, :service_image, :fill,600,300, class: "service_image_top" %></a>
+	        	<%= link_to service_path(service), class: "service-top" do %>
+	            <%= attachment_image_tag service, :service_image, :fill,600,300, class: "service_image_top" %>
+	            <% end %>
 	            <% end %>
 	        </div>
 		</div>
@@ -17,18 +19,21 @@
   				<div class="card-body">
     				<%=link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
     				<p class="service-outline"><%= service_trend.service_summary %></p>
-    				<i class="far fa-comment"></i>20
-    				<i class="far fa-star"></i>100 <br>
+    				<i class="far fa-comment"></i><%= service_trend.goodcount %>
+    				<i class="far fa-star"></i><%= service_trend.favorites.count %><br>
     				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
+    					<i class="far fa-thumbs-up"><%= service_trend.goods.count %></i>
     					<div class="goodbad-graph">
-    						<span class="good-point" style="width:70%;">70%</span>
+    						<% good_ratio = service_trend.goods.count*100/(service_trend.goods.count + service_trend.bads.count) %>
+    						<span class="good-point" style="width: <%= good_ratio %>% ;">
+    							<%= good_ratio %>%
+    						</span>
     					</div>
-    					<i class="far fa-thumbs-down"></i>
+    					<i class="far fa-thumbs-down"><%= service_trend.bads.count %></i>
     				</div>
 					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
+							<span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
+							<a class="new-comment-content" href="#"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></a>
 					</div>
   				</div>
 			</div>
@@ -37,88 +42,50 @@
 		<div id="comment">
 			<h3 class="topic-comment">話題のコメント <i class="fas fa-fire"></i>
 			</h3>
+			<% @comment_trend.each do |comment_trend| %>
 			<div class="topic-comment-contents" >
 				<p class="topic-comment-good-counts">
 					<i class="far fa-thumbs-up"></i>
-					<span class="topic-comment-good-count">200</span>
+					<span class="topic-comment-good-count">
+						<%= comment_trend.goodcount %>
+					</span>
 				</p>
 				<div class="card comment-card" style="width: 100%; margin: 0;">
 	  				<div class="card-body">
 	  					<div class="card-body-commenter"></div>
-	    					<span class="topic-commenter-name">東証一部</span>
+	    					<span class="topic-commenter-name"><%= comment_trend.user.status.status_name %></span>
 	    					<div class="topic-commenter-body">
-	    						<span>id: asdanj3813</span>
-	    						<p class="topic-comment-time">1 hours ago</p>
+	    						<span><%= comment_trend.user.id %></span>
+	    						<p class="topic-comment-time"><%= time_ago_in_words(comment_trend.created_at) %> ago ago</p>
 	    					</div>
-	    				<p class="card-text">(O文字で制限)どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</p>
+	    				<p class="card-text"><%= comment_trend.comment_content %></p>
 	  				</div>
-	  					<img class="card-img-top" src="..." alt="Card image cap">
+	  					<%= attachment_image_tag comment_trend.service, :service_image, :fill,600,300 %>
 	  					<div class="topic-comment-service">
-	  						<a class="service-title" href="#">Card title</a>
-    						<p class="service-outline">何でも薄暗いじめじめした所</p>
+	  						<a class="service-title" href="#"><%= comment_trend.service.service_name %></a>
+    						<p class="service-outline"><%= comment_trend.service.service_summary %></p>
     					</div>
 				</div>
 			</div>
-			<div class="topic-comment-contents" >
-				<p class="topic-comment-good-counts">
-					<i class="far fa-thumbs-up"></i>
-					<span class="topic-comment-good-count">180</span>
-				</p>
-				<div class="card comment-card" style="width: 100%; margin: 0;">
-	  				<div class="card-body">
-	  					<div class="card-body-commenter"></div>
-	    					<span class="topic-commenter-name">東証一部</span>
-	    					<div class="topic-commenter-body">
-	    						<span>id: asdanj3813</span>
-	    						<p class="topic-comment-time">1 hours ago</p>
-	    					</div>
-	    				<p class="card-text">(O文字で制限)どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</p>
-	  				</div>
-	  					<img class="card-img-top" src="..." alt="Card image cap">
-	  					<div class="topic-comment-service">
-	  						<a class="service-title" href="#">Card title</a>
-    						<p class="service-outline">何でも薄暗いじめじめした所</p>
-    					</div>
-				</div>
-			</div>
-			<div class="topic-comment-contents" >
-				<p class="topic-comment-good-counts">
-					<i class="far fa-thumbs-up"></i>
-					<span class="topic-comment-good-count">150</span>
-				</p>
-				<div class="card comment-card" style="width: 100%; margin: 0;">
-	  				<div class="card-body">
-	  					<div class="card-body-commenter"></div>
-	    					<span class="topic-commenter-name">東証一部</span>
-	    					<div class="topic-commenter-body">
-	    						<span>id: asdanj3813</span>
-	    						<p class="topic-comment-time">1 hours ago</p>
-	    					</div>
-	    				<p class="card-text">(O文字で制限)どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</p>
-	  				</div>
-	  					<img class="card-img-top" src="..." alt="Card image cap">
-	  					<div class="topic-comment-service">
-	  						<a class="service-title" href="#">Card title</a>
-    						<p class="service-outline">何でも薄暗いじめじめした所</p>
-    					</div>
-				</div>
-			</div>
+			<% end %>
+			
 		</div>
 		<div id="used-to-be-famous">
-			<h3 class="topic-comment">あのサービスは今...</h3>
+			<h3 class="topic-comment">新着サービス</h3>
+			<% @services.each do |service| %>
 			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
+				<%= attachment_image_tag service, :service_image, :fill,300,150, class: "card-img-top" %>
   				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
-    				<i class="far fa-comment"></i>20
+  					<%=link_to service.service_name, service_path(service.id), class: "service-title" %>
+    				<p class="service-outline"><%= service.service_summary %></p>
+    				<i class="far fa-comment"></i><%= service.goodcount %>
     				<i class="far fa-star"></i>100 <br>
     				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
+    					<i class="far fa-thumbs-up"><%= service.goods.count %></i>
     					<div class="goodbad-graph">
     						<span class="good-point" style="width:70%;">70%</span>
     					</div>
-    					<i class="far fa-thumbs-down"></i>
+    					<i class="far fa-thumbs-down"><%= service.bads.count %></i>
     				</div>
 					<div class="new-comment">
 							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
@@ -126,26 +93,7 @@
 					</div>
   				</div>
 			</div>
-			<div class="card" style="width: 40%;">
-  				<img class="card-img-top" src="..." alt="Card image cap">
-  				<div class="card-body">
-    				<a class="service-title" href="#">Card title</a>
-    				<p class="service-outline">何でも薄暗いじめじめした所</p>
-    				<i class="far fa-comment"></i>20
-    				<i class="far fa-star"></i>100 <br>
-    				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"></i>
-    					<div class="goodbad-graph">
-    						<span class="good-point" style="width:70%;">70%</span>
-    					</div>
-    					<i class="far fa-thumbs-down"></i>
-    				</div>
-					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
-					</div>
-  				</div>
-			</div>
+			<% end %>
 		</div>
 	</div>
     <%= render partial: "common/right-sidebar",locals: { services: @services } %>
