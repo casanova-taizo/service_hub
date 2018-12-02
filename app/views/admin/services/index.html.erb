@@ -9,6 +9,7 @@
 	<tr>
 		<th>id </th>
 		<th>service_name </th>
+		<th>service_releasetime </th>
 		<th>service_summary </th>
 		<th>service_img </th>
 		<th>service_campany </th>
@@ -22,6 +23,7 @@
 	<tr>
 		<td><%= service.id %></td>
 		<td><%= service.service_name %></td>
+		<td><%= service.service_releasetime %></td>
 		<td><%= service.service_summary %></td>
 		<% if service.service_image.present? %>
 			<td><%= attachment_image_tag service, :service_image, :fill, 100, 100, format: 'jpeg' %></td>

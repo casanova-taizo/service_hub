@@ -1,17 +1,40 @@
 <%= form_for(@service, url:{controller: 'services', action:'create' }) do |form| %>
-	<p>サービス名</p>
-	<%= form.text_field :service_name %>
-	<p>概要</p>
-	<%= form.text_field :service_summary %>
-	<p>画像</p>
-	<%= form.attachment_field :service_image %>
-	<p>会社</p>
-	<%= form.text_field :service_campany %>
-	<p>サービスページ</p>
-	<%= form.text_field :related_link %>
-	<p>カテゴリID</p>
-	<%= form.text_field :category_id %>
-	<p>タグ</p>
-	<%= form.text_field :tag_list %>
+	<p>
+		サービス名
+		<%= form.text_field :service_name %>
+	</p>
+	<p>
+		リリース日
+		<%= form.text_field :service_releasetime %>
+	</p>
+	<p>
+		概要
+		<%= form.text_field :service_summary %>
+	</p>
+	<p>
+		画像
+		<%= form.attachment_field :service_image %>
+	</p>
+	<p>
+		会社
+		<%= form.text_field :service_campany %>
+	</p>
+	<p>
+		サービスページ
+		<%= form.text_field :service_link %>
+	</p>
+	<p>
+		関連リンク
+		<%= form.text_field :related_link %>
+	</p>
+	<p>
+		カテゴリID
+  	<%= form.collection_select :category_id, Category.all, :id, :category_name %>
+  	</p>
+	<p>
+		タグ
+		<%= form.text_field :tag_list %>
+	</p>
+	<br>
 	<%= form.submit "送信"%>
 <%	end %>
