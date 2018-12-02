@@ -1,0 +1,81 @@
+<h1 align="center">マイページ</h1>
+<div class="tabs">
+  <input id="all" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="all">お気に入り</label>
+    <input id="programming" type="radio" name="tab_item">
+  <label class="tab_item" for="programming">会員情報</label>
+    <input id="design" type="radio" name="tab_item">
+<div class="tab_content" id="all_content">
+    <div class="tab_content_description">
+      <% if @services.present? %>
+        <% @services.each do |service|%>
+          <div class="card" style="width: 40%;">
+          <%= attachment_image_tag service, :service_image, :fill,300,150, class: "card-img-top" %>
+            <div class="card-body">
+              <%=link_to service.service_name, service_path(service.id), class: "service-title" %>
+              <p class="service-outline"><%= service.service_summary %></p>
+              <i class="far fa-comment"></i>20
+              <i class="far fa-star"></i>100 <br>
+              <div class="goodbad-line">
+                <i class="far fa-thumbs-up"></i>
+                <div class="goodbad-graph">
+                  <span class="good-point" style="width:70%;">70%</span>
+                </div>
+                <i class="far fa-thumbs-down"></i>
+              </div>
+            <div class="new-comment">
+                <span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
+                <a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
+            </div>
+            </div>
+        </div>
+        <% end %>
+      <%else%>
+        <p>お気に入りがありません。</p>
+      <%end%>
+      </div>
+    </div>
+  <div class="tab_content" id="programming_content">
+    <div class="tab_content_description">
+      <div class="profile_left">
+        <%= form_for(current_user) do |f| %>
+          <%= f.label :ID%>
+          <%= current_user.id_random %></br>
+          <%= f.label :メールアドレス %>
+          <%= f.email_field :email, class: 'form-control' %>
+          <%= f.label :パスワード %>
+          <%= f.password_field :password, class: 'form-control' %>
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div>
+    <h5 align="center"><%= current_user.status.status_name%></font></h5>
+    <table width="100%">
+    <tr>
+    <th bgcolor="black" width= 30%><font color="#FFFFFF">コメント数</font></th>
+    <th bgcolor="black" width=30% ><font color="#FFFFFF" >高評価</font></th>
+    <th bgcolor="black" width= 30% ><font color="#FFFFFF">低評価</font></th>
+    </tr>
+    <tr>
+    <td  valign= "center" align="center" ><%= current_user.comments.count%></td>
+    <td  valign= "center" align="center" >
+      <% good_comment_count = 0 %>
+      <% current_user.comments.each do |comment| %>
+        <% good_comment_count = comment.good_comments.count + good_comment_count %>
+      <% end%>
+      <%= good_comment_count%>
+    </td>
+    <td bgcolor="#FFFFFF" valign= "center" align="center" height="100px">
+      <% bad_comment_count = 0 %>
+      <% current_user.comments.each do |comment| %>
+        <% bad_comment_count = comment.bad_comments.count + bad_comment_count %>
+      <% end%>
+      <%= bad_comment_count%>
+    </td>
+    </table>
+      </div>
+    </div>
+  </div>
+  <div class = rank >
+    <%= image_tag 'rank_description.png', class: "rank-img" %>
+  </div>

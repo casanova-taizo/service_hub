@@ -21,7 +21,7 @@
 
 $(function(){
 $("document").ready(function() {
- 
+
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -47,5 +47,14 @@ $("#theTarget").skippr({
 });
 });
  $('.comment-btn').modaal();
+$(".tab_label").on("click",function(){
+    var $th = $(this).index();
+    $(".tab_label").removeClass("active");
+    $(".tab_panel").removeClass("active");
+    $(this).addClass("active");
+    $(".tab_panel").eq($th).addClass("active");
+});
 
 });
+
+

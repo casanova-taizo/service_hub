@@ -23,6 +23,7 @@ License: none (public domain)
 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "show__user";
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -123,5 +124,16 @@ border-spacing: 0;
   text-align: center;
 }
 }
+
+.rank{
+  text-align: center;
+  height: 100%;
+}
+.rank img {
+   max-width: 300px;
+   height: auto;
+}
+
+
 
 

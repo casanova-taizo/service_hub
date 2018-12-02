@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_action :authenticate_user!
   def index
     feed_contents = FeedContent.all
     @feed_contents = feed_contents.map(&:content)

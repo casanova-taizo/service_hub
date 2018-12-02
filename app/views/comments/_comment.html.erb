@@ -1,8 +1,10 @@
-<div class="card card-side">
-  <div class="card-body">
-    <h5 class="card-title"><%= comment.user.status.status_name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= time_ago_in_words(comment.created_at) %> ago</br><%= comment.user.id_random%></h6>
-    <p class="card-text"><%= comment.comment_content%></p>
-    <a href="#" class="card-link">Card link</a>
-  </div>
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= comment.user.status.status_name %></h5>
+      <small><%= time_ago_in_words(comment.created_at) %> ago</small>
+    </div>
+    <p class="mb-1"><%= truncate(comment.comment_content, length: 60) %></p>
+  </a>
+
 </div>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :services
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :update]
 
   resources :services do
     resource :comments
