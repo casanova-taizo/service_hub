@@ -70,3 +70,4 @@ gem 'acts-as-taggable-on' , '~> 6.0'  #タグ用
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem "cancancan"
+gem "kaminari"
