@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :update_status, only: :logout
-
+  before_action :update_status, only: :login
+  
   def update_status
     good_bad_comments_count = 0
     current_user.comments.each do |comment|
