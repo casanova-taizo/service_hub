@@ -1,3 +1,4 @@
+<% if current_user.role = 1 %>
 <div>
 	<button type="post" style="width: 300px; height: 50px" >
 		<a href="/admin/services/new">新規作成</a>
@@ -23,7 +24,7 @@
 	<tr>
 		<td><%= service.id %></td>
 		<td><%= service.service_name %></td>
-		<td><%= service.service_releasetime %></td>
+		<td><%= service.release_date %></td>
 		<td><%= service.service_summary %></td>
 		<% if service.service_image.present? %>
 			<td><%= attachment_image_tag service, :service_image, :fill, 100, 100, format: 'jpeg' %></td>
@@ -40,3 +41,6 @@
 	<% end %>
 </table>
 </pre>
+<% else %>
+	<div>エラー</div>
+<% end %>

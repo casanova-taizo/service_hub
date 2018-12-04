@@ -4,7 +4,13 @@ class Ability
   def initialize(user)
 
 
-    
+    user ||= User.new
+    if user.admin?
+        can :manage, :all
+    end
+    if user.user?
+        cannot [:new,:create,:edit,:update,:destroy], Service
+    end
     # user ||= User.new
     # if user.admin?
     #   can :manage, :all

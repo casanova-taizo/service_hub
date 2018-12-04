@@ -130,7 +130,7 @@
 						<p class="comment-time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
 						<div class="commenter-comment"><%= comment.comment_content %></div>
 						<div class="comment-reaction">
-							<i class="fas fa-reply rep-icon"> 33
+							<i class="fas fa-reply rep-icon"><%= @comments_for_comment.where(reply_comment: comment.id).size %>
 							</i>
 							<% if comment.comment_gooded_by?(current_user) %>
 								<%= link_to service_comment_good_comments_path(@service.id, comment), method: :delete do %>
@@ -175,7 +175,7 @@
 						<div class="topic-comment-box-right-for-comment">
 							<h6 class="commenter-id"><%= comment_for_comment.user.id %></h6>
 							<p class="comment-time-ago"><%= time_ago_in_words(comment_for_comment.created_at) %> ago</p>
-							<div class="commenter-comment"><%= comment_for_comment.comment_content %>コメントに対するコメントです。</div>
+							<div class="commenter-comment"><%= comment_for_comment.comment_content %></div>
 							<div class="comment-reaction">
 								<% if comment_for_comment.comment_gooded_by?(current_user) %>
 									<%= link_to service_comment_good_comments_path(@service.id, comment_for_comment), method: :delete do %>
@@ -223,7 +223,7 @@
 							<p class="comment-time-ago"><%= time_ago_in_words(comment_latest.created_at) %> ago ago</p>
 							<div class="commenter-comment"><%= comment_latest.comment_content %></div>
 							<div class="comment-reaction">
-									<i class="fas fa-reply rep-icon">33</i>
+									<i class="fas fa-reply rep-icon"><%= @comments_for_comment.where(reply_comment: comment_latest.id).size %></i>
 								<% if comment_latest.comment_gooded_by?(current_user) %>
 									<%= link_to service_comment_good_comments_path(@service.id, comment_latest), method: :delete do %>
 										<i class="fas fa-thumbs-up" style="color:black;"></i>

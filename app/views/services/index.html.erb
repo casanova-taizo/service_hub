@@ -5,6 +5,10 @@
 	        <div id="theTarget">
 	        	<% @services.each do |service| %>
 	        	<%= link_to service_path(service), class: "service-top" do %>
+	        	<div class="top-title-box">
+	        		<span class="top-title"><%= service.service_name %></span><br>
+	        		<span class="top-subtitle"><%= service.service_summary %></span>
+	        	</div>
 	            <%= attachment_image_tag service, :service_image, :fill,600,300, class: "service_image_top" %>
 	            <% end %>
 	            <% end %>
@@ -14,10 +18,11 @@
 			<h3 class="thisweek-trend">今週のトレンド <i class="fas fa-chart-line"></i>
 			</h3>
 			<% @services_trend.each do |service_trend| %>
+			<%= link_to service_path(service_trend.id) do %>
 			<div class="card" style="width: 40%;">
 				<%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
   				<div class="card-body">
-    				<%=link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
+    				<%= link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
     				<p class="service-outline"><%= service_trend.service_summary %></p>
     				<i class="far fa-comment"></i><%= service_trend.goodcount %>
     				<i class="far fa-star"></i><%= service_trend.favorites.count %><br>
@@ -33,10 +38,11 @@
     				</div>
 					<div class="new-comment">
 							<span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
-							<a class="new-comment-content" href="#"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></a>
+							<p class="new-comment-content" style="height:50px;"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></p>
 					</div>
   				</div>
 			</div>
+			<% end %>
 			<% end %>
 		</div>
 		<div id="comment">
@@ -88,8 +94,8 @@
     					<i class="far fa-thumbs-down"><%= service.bads.count %></i>
     				</div>
 					<div class="new-comment">
-							<span class="commenter-role">VC : </span><span class="commenter-id-random">asdanj3813</span> <br>
-							<a class="new-comment-content" href="#">どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを...</a>
+							<span class="commenter-role"><%= service.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service.comments.first.user.id %></span> <br>
+							<p class="new-comment-content" style="height:50px;"><%= truncate(service.comments.first.comment_content, length: 40)  %></p>
 					</div>
   				</div>
 			</div>

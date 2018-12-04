@@ -68,34 +68,78 @@ table {
 border-collapse: collapse;
 border-spacing: 0;
 }
-.form-inline{
-  padding-top: 23px;
-  padding-left: 17px;
-  float: left;
+.header-center {
+  text-align:center;
+  background-color: #604828;
+}
+.header-top {
+  margin: 0 auto;
+  width: 100%;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+#form2{
+position:relative;
+max-width:300px;  
+}
+#sbox2{
+height:50px;
+padding:0 10px; 
+position:absolute; 
+left:35px;
+top:20px;
+border-radius:40px;
+outline:0;
+width: 80%;
+}
+#sbtn2{
+height:50px;
+position:absolute; 
+left:228px;/*アイコン左右の位置調整*/
+top:20px;
+background:none;
+color:#666;
+border:none;
+font-size:20px;/*アイコンサイズ*/
+}
+#sbtn5:hover{
+color:#7fbfff;
 }
 
 .log_out_icon{
-  float:right;
-  padding-top:22px;
-  padding-right:40px;
+  position: absolute;
+  top:40px;
+  right: 95px;
+  color: white !important;
+  text-decoration: none;
+}
+.log_out_icon:hover {
+  text-decoration: none;
 }
 
 .header-icon{
-  padding-top: 10px;
-  padding-left: 220px;
+  display: block;
+  margin: 0 auto;
+  width: 30%;
 }
-
+.header-bottom {
+  width: 87%;
+  margin: 0 auto;
+}
 .nav{
  padding-left: 30px;
  padding-top: 20px;
 }
 .nav-item{
   display: inline-block !important;
-  width :150px;
+  width :12%;
   text-align: center;
+  color: white !important;
 }
 .nav-link{
   display: inline !important;
+  color: white !important;
 }
 
 .left-sidebar{

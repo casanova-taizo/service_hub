@@ -1,13 +1,21 @@
 class Admin::ServicesController < ApplicationController
   def index
-    @services = Service.all
+    if current_user.role = 1
+      @services = Service.all
+    else
+      render 403
+    end
   end
 
   def show
   end
 
   def new
-    @service = Service.new
+    if current_user.role = 1
+      @service = Service.new
+    else
+      render 403
+    end
   end
 
   def create
