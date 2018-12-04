@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @services = current_user.services
+    @favorites = current_user.favorites
+
   end
 
   def update

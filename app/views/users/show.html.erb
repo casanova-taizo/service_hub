@@ -8,12 +8,12 @@
 <div class="tab_content" id="all_content">
     <div class="tab_content_description">
       <% if @services.present? %>
-        <% @services.each do |service|%>
+        <% @favorites.each do |favorite|%>
           <div class="card" style="width: 40%;">
-          <%= attachment_image_tag service, :service_image, :fill,300,150, class: "card-img-top" %>
+          <%= attachment_image_tag favorite.service, :service_image, :fill,300,150, class: "card-img-top" %>
             <div class="card-body">
-              <%=link_to service.service_name, service_path(service.id), class: "service-title" %>
-              <p class="service-outline"><%= service.service_summary %></p>
+              <%=link_to favorite.service.service_name, service_path(favorite.service.id), class: "service-title" %>
+              <p class="service-outline"><%= favorite.service.service_summary %></p>
               <i class="far fa-comment"></i>20
               <i class="far fa-star"></i>100 <br>
               <div class="goodbad-line">

@@ -4,7 +4,7 @@
         <input id="sbox2"  id="s" name="s" type="text" placeholder="フリーワードを入力"/>
         <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
       </form>
-      <%= link_to "#" do %>
+      <%= link_to services_path do %>
         <%= image_tag 'header-icon.png', class: "header-icon" %>
       <% end %>
       <%= link_to "ログアウト", destroy_user_session_path , :method => "delete", class: "log_out_icon" %>
