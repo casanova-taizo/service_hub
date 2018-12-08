@@ -52,7 +52,9 @@
     				<tr>
     					<td class="table-left">関連リンク</td>
     					<td class="table-right">
-    						<a href="https://choice-dinner.herokuapp.com/"></a>https://choice-dinner.herokuapp.com/
+    						<%= link_to @service.service_link do %>
+    							<a href="<%= @service.service_link %>"><%= @service.service_link %></a>
+    						<% end %>
     					</td>
     				</tr>
     				</tbody>
