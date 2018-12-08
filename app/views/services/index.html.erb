@@ -1,9 +1,10 @@
 <div id="top">
   <%= render partial: "common/left-sidebar",locals: { feed_contents: @feed_contents } %>
-	<div class="main-service">
-		<div id="slide-service">
+  	<div class="slide-service-side">
+	</div>
+  	<div id="slide-service">
 	        <div id="theTarget">
-	        	<% @services.each do |service| %>
+	        	<% @services_top.each do |service| %>
 	        	<%= link_to service_path(service), class: "service-top" do %>
 	        	<div class="top-title-box">
 	        		<span class="top-title"><%= service.service_name %></span><br>
@@ -12,39 +13,61 @@
 	            <%= attachment_image_tag service, :service_image, :fill,600,300, class: "service_image_top" %>
 	            <% end %>
 	            <% end %>
-	        </div>
-		</div>
+		    </div>
+	</div>
+
+	<div class="main-service">
 		<div id="trend" class="clearfix">
 			<h3 class="thisweek-trend">今週のトレンド <i class="fas fa-chart-line"></i>
 			</h3>
-			<% @services_trend.each do |service_trend| %>
-			<%= link_to service_path(service_trend.id) do %>
-			<div class="card" style="width: 40%;">
-				<%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
-  				<div class="card-body">
-    				<%= link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
-    				<p class="service-outline"><%= service_trend.service_summary %></p>
-    				<i class="far fa-comment"></i><%= service_trend.goodcount %>
-    				<i class="far fa-star"></i><%= service_trend.favorites.count %><br>
-    				<div class="goodbad-line">
-    					<i class="far fa-thumbs-up"><%= service_trend.goods.count %></i>
-    					<div class="goodbad-graph">
-    						<% good_ratio = service_trend.goods.count*100/(service_trend.goods.count + service_trend.bads.count) %>
-    						<span class="good-point" style="width: <%= good_ratio %>% ;">
-    							<%= good_ratio %>%
-    						</span>
-    					</div>
-    					<i class="far fa-thumbs-down"><%= service_trend.bads.count %></i>
-    				</div>
-					<div class="new-comment">
-							<span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
-							<p class="new-comment-content" style="height:50px;"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></p>
-					</div>
-  				</div>
+			<div class="trend-left clearfix">
+				<% @services_trend.each do |service_trend| %>
+				<%= link_to service_path(service_trend.id) do %>
+				<div class="card" style="width: 45%;">
+					<%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
+	  				<div class="card-body">
+	    				<%= link_to service_trend.service_name, service_path(service_trend.id), class: "service-title" %>
+	    				<p class="service-outline service-outline-trend"><%= service_trend.service_summary %></p>
+	    				<i class="far fa-comment"></i><%= service_trend.goodcount %>
+	    				<i class="far fa-star"></i><%= service_trend.favorites.count %><br>
+	    				<div class="goodbad-line">
+	    					<i class="far fa-thumbs-up"><%= service_trend.goods.count %></i>
+	    					<div class="goodbad-graph">
+	    						<% good_ratio = service_trend.goods.count*100/(service_trend.goods.count + service_trend.bads.count) %>
+	    						<span class="good-point" style="width: <%= good_ratio %>% ;">
+	    							<%= good_ratio %>%
+	    						</span>
+	    					</div>
+	    					<i class="far fa-thumbs-down"><%= service_trend.bads.count %></i>
+	    				</div>
+						<div class="new-comment">
+								<span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
+								<p class="new-comment-content" style="height:50px;"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></p>
+						</div>
+	  				</div>
+				</div>
+				<% end %>
+				<% end %>
 			</div>
-			<% end %>
-			<% end %>
+			<div class="trend-right">
+				<h4 class="trend-right-title">新着サービス</h4>
+				<% @services.each do |thing| %>
+				<%= link_to service_path(thing), class: "textdecoration-none " do %>
+					<div class="trend-right-new-service textdecoration-none">
+						<p class="trend-right-service-title textdecoration-none"><%= thing.service_name %></p>
+						<p class="trend-right-service-body textdecoration-none">
+							<%= truncate(thing.service_summary, length: 47) %>
+						</p>
+						<p class="trend-right-service-releasedate"><%= thing.release_date %></p>
+					</div>
+					<hr>
+				<% end %>
+				<% end %>
+			</div>
 		</div>
+		<a class="banner-content" href="/live-movie/236">
+			<img alt="" src="https://resources.newspicks.com/for_clients/live_movie/day/20181205/pc-banner-after.png" class="banner-content">
+		 </a>
 		<div id="comment">
 			<h3 class="topic-comment">話題のコメント <i class="fas fa-fire"></i>
 			</h3>
@@ -102,7 +125,7 @@
 			<% end %>
 		</div>
 	</div>
-    <%= render partial: "common/right-sidebar",locals: { services: @services } %>
+    <%#= render partial: "common/right-sidebar",locals: { services: @services } %>
 </div>
 <script src="/javascripts/skippr.min.js"></script>
 

@@ -4,7 +4,8 @@ class ServicesController < ApplicationController
     feed_contents = FeedContent.all
     @feed_contents = feed_contents.map(&:content)
     @services = Service.all.order("id DESC")
-    @services_trend = Service.limit(2).order("goodcount DESC")
+    @services_top = Service.limit(4).order("id DESC")
+    @services_trend = Service.limit(4).order("goodcount DESC")
     # @services_trend = Service.joins(:goods).includes(:service_id).order("size")
     @comment_trend = Comment.limit(3).order("goodcount DESC")
   end
