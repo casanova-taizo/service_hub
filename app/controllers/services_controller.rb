@@ -1,8 +1,9 @@
 class ServicesController < ApplicationController
   before_action :authenticate_user!
   def index
-    feed_contents = FeedContent.all
-    @feed_contents = feed_contents.map(&:content)
+    @comments = Comment.all.order("id DESC")
+    # feed_contents = FeedContent.all
+    # @feed_contents = feed_contents.map(&:content)
     @services = Service.all.order("id DESC")
     @services_top = Service.limit(4).order("id DESC")
     @services_trend = Service.limit(4).order("goodcount DESC")
