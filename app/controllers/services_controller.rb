@@ -12,6 +12,7 @@ class ServicesController < ApplicationController
   end
 
   def show
+    @comments = Comment.all.order("id DESC")
     feed_contents = FeedContent.all
     @feed_contents = feed_contents.map(&:content)
     @services= Service.all

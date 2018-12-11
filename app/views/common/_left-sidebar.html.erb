@@ -13,7 +13,8 @@
     </table>
     <hr>
   <div class = "new_messages">
-    <% comments.each do |comment|%>
+    <% @comments.each do |comment|%>
+    <%= link_to service_path(comment.service) do%>
     <div class = "new_message">
       <p class = "new_message_status"><%= comment.user.status.status_name%></p>
       <p class = "new_message_time"><%= time_ago_in_words(comment.created_at)%> ago</p>
@@ -22,6 +23,7 @@
       <p class = "new_message_service-content"><%= truncate(comment.service.service_summary, length:15) %></p>
       <hr>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>
