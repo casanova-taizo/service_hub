@@ -13,7 +13,7 @@
     </table>
     <hr>
   <div class = "new_messages">
-    <% @comments.each do |comment|%>
+    <% comments.each do |comment|%>
     <%= link_to service_path(comment.service) do%>
     <div class = "new_message">
       <p class = "new_message_status"><%= comment.user.status.status_name%></p>
