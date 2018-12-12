@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="modaal.min.css">
 <script src="modaal.min.js"></script>
 <div id="service-show">
-	<%= render partial: "common/left-sidebar",locals: { feed_contents: @feed_contents } %>
+<%= render partial: "common/left-sidebar",locals: { comments: @comments } %>
 	<div class="service-show">
 		<div class="service-info">
 			<%= attachment_image_tag @service, :service_image, :fill,600,300, class: "service-img" %>

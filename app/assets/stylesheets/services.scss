@@ -12,6 +12,7 @@
 #top {
 	width: 100%;
 }
+
 .left-sidebar {
 	width: 16%;
 	height: 4000px;
@@ -19,13 +20,6 @@
 	border: solid 1px black;
 	background-color: #dcdcdc;
 	position: fixed;
-}
-.right-sidebar {
-	width: 16%;
-	height: 4000px;
-	float: right;
-	border: solid 1px black;
-	background-color: #dcdcdc;
 }
 .main-service {
 	float: right;
@@ -219,7 +213,6 @@ hr {
 }
 .card:hover {
 	box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.08);
-	
 }
 #comment {
 	width: 100%;
@@ -231,6 +224,7 @@ hr {
 .topic-comment {
 	font-size: 19px;
 	font-weight: 600;
+
 	margin-bottom: 0;
 	margin-left: 1.3%;
 	.fas {
@@ -450,7 +444,7 @@ hr {
 
 .modaal-content-container {
 	text-align: center;
-	
+
 
 }
 
