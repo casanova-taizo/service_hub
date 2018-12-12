@@ -1,8 +1,7 @@
 <div class="left-sidebar">
-    <% if user_signed_in? %>
-      <p class = "header_name"><%= current_user.status.status_name %></p>
-    <% else %>
-    <% end %>
+  <%= link_to user_path(current_user) do%>
+  <div class = "left-sidebar__header">
+    <p class = "header_name"><%= current_user.status.status_name %></p>
     <table>
       <tr>
         <td>4</td><td>4</td>
@@ -12,6 +11,8 @@
       </tr>
     </table>
     <hr>
+  </div>
+  <% end %>
   <div class = "new_messages">
     <% comments.each do |comment|%>
     <%= link_to service_path(comment.service) do%>
