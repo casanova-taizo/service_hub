@@ -12,27 +12,32 @@
 #top {
 	width: 100%;
 }
+
 .left-sidebar {
 	width: 16%;
 	height: 4000px;
 	float: left;
 	border: solid 1px black;
 	background-color: #dcdcdc;
-}
-.right-sidebar {
-	width: 16%;
-	height: 4000px;
-	float: right;
-	border: solid 1px black;
-	background-color: #dcdcdc;
+	position: fixed;
 }
 .main-service {
-	float: left;
-	width: 68%;
+	float: right;
+	width: 84%;
+	padding-top: 1%;
+	padding-left: 3%;
+	background-color: #ebebeb;
 }
 #slide-service {
-	width: 100%;
-	height: 450px;
+	width: 55.6%;
+	height: 360px;
+	float: right;
+}
+.slide-service-side {
+	float:right;
+	width:28.4%;
+	height: 360px;
+	background-color:#00FFFF;
 }
 .service-top {
 	width: 100%;
@@ -44,60 +49,132 @@
     background-color: rgba(0,0,0,0.3);
 }
 .top-title-box {
+	height: 100%;
+	width: 100%;
 	position: absolute;
-    top: 70%;
-    left: 1%;
     color: white;
     background-color:rgba(1,1,1,0.3);
 }
 .service-top:hover {
 	.top-title-box {
-		background-color: rgba(1,1,1,0.7);
+		background-color: rgba(1,1,1,0.7) !important;
+		opacity: 1 !important;
 	}
 }
 .top-title {
 	font-size:45px;
+	position: absolute;
+	top: 58%;
+	left: 7%;
 }
 .top-subtitle {
 	font-size:15px;
+	position: absolute;
+	top: 77%;
+	left: 7%;
 }
 
 #trend {
 	width: 100%;
-	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 1%;
+}
+.trend-left {
+	width:65%;
+	height: auto;
+	float: left;
+}
+.trend-right {
+	width:29%;
+	height: 928px;
+	float: left;
+	background-color: white;
+	margin: 16px;
+	margin-left: 0;
+}
+.trend-right:hover {
+	box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.trend-right-title {
+	font-size: 20px;
+	font-weight: 600;
+	margin-left:4%;
+	margin-top: 6%;
+	margin-bottom: 10%;
+}
+.trend-right-new-service {
+	height: 12%;
+}
+.trend-right-new-service:hover {
+	background-color: #ebebeb;
+}
+.textdecoration-none {
+	text-decoration:none !important;
+	color: black !important;
+}
+.trend-right-service-title {
+	font-size: 23px;
+	font-weight: 600;
+	padding: 5%;
+	padding-bottom: 0;
+	margin: 0;
+}
+.trend-right-service-body {
+	font-size: 13px;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin: 0;
+}
+.trend-right-service-releasedate {
+	font-size: 12px;
+	color:#AAA;
+	padding-left: 5%;
+}
+hr {
+
+	margin: 0 auto !important;
+	width: 90%;
 }
 .thisweek-trend {
-	font-size: 40px;
+	font-size: 19px;
+	font-weight: 600;
+	margin-left:1%;
+	margin-bottom: 0;
 	.fas {
 	color: #EE0000;
 	}
 }
 .card {
 	float: left;
-	margin: 40px;
-	margin-top: 30px;
+	margin: 15px;
 	text-align: left;
-	box-shadow: 3px 1px 10px 0 rgba(0, 0, 0, 0.39);
-	-webkit-transition: all .3s;
-    transition: all .3s;
+	-webkit-transition: all .1s;
+    transition: all .1s;
+    height: 450px;
+    border-radius: 0 !important;
 	img {
 		width: 100%;
-		height:180px;
+		height:160px;
 		background-color: #dcdcdc;
 	}
+	.card-body {
+		padding: 1rem;
+		padding-top: 5px;
+		padding-bottom: 0;
+	}
 	.service-title, .topic-commenter-name {
-		font-size: 30px;
+		font-size: 18px;
 		font-weight: bolder;
 		margin-bottom: 0;
 		text-decoration: none;
 		color: black;
 	}
 	.service-outline {
-	font-size: 15px;
-	margin-bottom: 0;
-	height: 80px;
+	font-size: 13px;
+	height: 70px;
+	}
+	.service-outline-trend {
+	margin-bottom: 5px;
+	border-bottom: 1px solid #9999;
 	}
 	.goodbad-line {
 	text-align: center;
@@ -107,6 +184,7 @@
 	.goodbad-graph {
 		position: relative;
 	    width: 75%;
+	    height: 35px;
 	    border: 1px solid #207870;
 	    padding: 2px;
 	    display: inline-block;
@@ -117,8 +195,8 @@
 	    background: black;
 	    text-align: center;
 	    color: #f0ffff;
-	    height: 2em;
-	    line-height: 2em;
+	    height: 29px;
+	    line-height: 27px;
 	}
 	.goodbad-graph .good-point span {
 		position: absolute;
@@ -129,53 +207,96 @@
 		color: white;
 	}
 	.new-comment-content {
-		font-size:15px;
+		font-size:13px;
 		color: #555555;
 	}
 }
 .card:hover {
-	box-shadow: 7px 4px 27px 0 rgba(0, 0, 0, 0.39);
-	-webkit-transform: translateY(-5px);
-    -ms-transform: translateY(-5px);
-    transform: translateY(-5px);
+	box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.08);
 }
 #comment {
 	width: 100%;
-	text-align: center;
-	padding: 50px;
+}
+.link {
+	text-decoration: none;
+	height: 100%;
 }
 .topic-comment {
-	font-size: 40px;
+	font-size: 19px;
+	font-weight: 600;
+
+	margin-bottom: 0;
+	margin-left: 1.3%;
 	.fas {
 	color: #EE0000;
 	}
 }
+.comment-card {
+	width:100% !important;
+	height: 170px;
+	margin-bottom: 30px !important;
+}
 .topic-comment-contents {
 	display: inline-block;
-	width: 88%;
+	width: 92.8%;
 	text-align: left;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 15px;
+	margin-left: 1.3%;
 	.topic-comment-good-count {
-		font-size: 50px;
+		font-size: 40px;
 	}
 }
 .topic-comment-good-counts {
 	margin-bottom: 0;
+	height: 33%;
 }
 .comment-card{
 	img {
 		width: 18%;
-		height: 70px;
+		height: 48%;
 		margin: 1.25rem;
 		margin-top: 0;
 		margin-bottom: -40px;
+		position: absolute;
+		top:6%;
+		left:72%;
 	}
+	.card-body {
+		padding: 1rem;
+    	padding-top: 5px;
+    	padding-bottom: 0;
+    	width: 72%;
+    	height: 100%;
+    	margin-left: 2%;
+	}
+	.rank-comment {
+		height: 94%;
+		width: 1%;
+		position: absolute;
+    	left: 7px;
+	}
+	.rank-comment1 {
+		background-color:gold;
+	}
+	.rank-comment2 {
+		background-color:silver;
+	}
+	.rank-comment3 {
+		background-color:#8B5500;
+	}
+	.card-text {
+		height: 35%;
+		margin-top: 1px;
+	}
+}
+.card-body-commenter {
+	margin-top: 5px;
 }
 .topic-commenter-body{
 	display: inline-block;
 	position: relative;
     top: 4px;
+    line-height: 15px;
 }
 .topic-comment-time {
 	margin-bottom: 0;
@@ -183,25 +304,28 @@
 	color: #808080;
 }
 .topic-comment-service {
-	width: 60%;
-	float: right;
-	position: relative;
-	top: -30px !important;
-    left: 170px !important;
+	width: 25%;
+	height: 42%;
+	position: absolute;
+	top: 53% !important;
+    left: 74% !important;
 }
 #used-to-be-famous {
 	width: 100%;
-    text-align: center;
-    padding: 50px;
+}
+.new-service-top {
+	width: 96%;
 }
 
 // サービス詳細ページ
 #service-show {
 	width:100%;
+
 }
 .service-show {
 	float: left;
 	width: 68%;
+	margin-left: 16%;
 }
 .service-info {
 	width: 100%;
@@ -281,6 +405,11 @@
 		line-height: 20px;
 	}
 }
+.banner-content {
+	margin: 2% auto;
+	margin-left: 0.7%;
+	width: 92.6%;
+}
 .split {
 	width: 80%;
 	height: 2px;
@@ -315,7 +444,7 @@
 
 .modaal-content-container {
 	text-align: center;
-	
+
 
 }
 
@@ -430,8 +559,11 @@
 	}
 
 }
-a:hover {
-	color: rgba(0,0,0,0);
+.link {
+	&:hover {
+		background-color: rgba(0,0,0,0);
+		opacity: 0.6;
+	}
 }
 
 

@@ -1,0 +1,99 @@
+.left-sidebar {
+  width: 16%;
+  float: left;
+  background-color: #fff;
+      table{
+        margin: 0 auto;
+      }
+      table td{
+        text-align: center;
+        padding: 10px;
+        width: 19px;
+        height: 18px;
+        font-family: HiraginoSans-W5;
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+      }
+      table th {
+        text-align: center;
+        width: 50px;
+        height: 10px;
+        font-family: HiraginoSans-W4;
+        font-size: 10px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: rgba(0, 0, 0, 0.58);
+        padding-bottom: 13px;
+      }
+      .header_name{
+      width: 100%;
+      height: 30%;
+      font-family: HiraginoSans-W5;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #000000;
+      text-align: center;
+      padding-top: 10%;
+    }
+}
+.new_messages{
+  overflow: scroll;
+  height:400px;
+}
+.new_message{
+  margin: 0 auto;
+  width: 160px;
+}
+.new_message_status{
+  width: 50px;
+  height: 10px;
+  font-family: HiraginoSans-W4;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.93);
+  margin-top: 17px;
+  margin-bottom: 0rem;
+}
+.new_message_time{
+  height: 10px;
+  font-family: HiraginoSans-W4;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.42);
+  margin-top: 3px;
+  margin-bottom: 0rem;
+}
+.new_message_content{
+  width: 149px;
+  font-family: HiraginoSans-W1;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.93);
+  margin-top: 9px;
+  margin-bottom: 0rem;
+}
+.new_message_service-name{
+  width: 149px;
+  height: 14px;
+  font-family: HiraginoSans-W4;
+  font-size: 10px;
+  color: #000000;
+  margin-top: 17px;
+  margin-bottom: 0rem;
+}
+.new_message_service-content{
+  width: 149px;
+  height: 24px;
+  font-family: HiraginoSans-W1;
+  font-size: 10px;
+  color: #000000;
+}

@@ -1,8 +1,30 @@
 <div class="left-sidebar">
-  <div class="card-side card">
-    <p class="card-text">あなた</p>
-    <%= image_tag 'megane-ojisan-logo.png', class: "card-img-top" %>
-    <div class="card-body user_status"><%= current_user.status.status_name%></div>
-  <%= render feed_contents%>
+  <%= link_to user_path(current_user) do%>
+  <div class = "left-sidebar__header">
+    <p class = "header_name"><%= current_user.status.status_name %></p>
+    <table>
+      <tr>
+        <td>4</td><td>4</td>
+      </tr>
+      <tr>
+        <th>いいね</th><th>コメント</th>
+      </tr>
+    </table>
+    <hr>
+  </div>
+  <% end %>
+  <div class = "new_messages">
+    <% comments.each do |comment|%>
+    <%= link_to service_path(comment.service) do%>
+    <div class = "new_message">
+      <p class = "new_message_status"><%= comment.user.status.status_name%></p>
+      <p class = "new_message_time"><%= time_ago_in_words(comment.created_at)%> ago</p>
+      <p class = "new_message_content"><%= truncate(comment.comment_content, length:50) %></p>
+      <p class = "new_message_service-name"><%= comment.service.service_name %></p>
+      <p class = "new_message_service-content"><%= truncate(comment.service.service_summary, length:15) %></p>
+      <hr>
+    </div>
+    <% end %>
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="modaal.min.css">
 <script src="modaal.min.js"></script>
 <div id="service-show">
-	<%= render partial: "common/left-sidebar",locals: { feed_contents: @feed_contents } %>
+<%= render partial: "common/left-sidebar",locals: { comments: @comments } %>
 	<div class="service-show">
 		<div class="service-info">
 			<%= attachment_image_tag @service, :service_image, :fill,600,300, class: "service-img" %>
@@ -52,7 +52,9 @@
     				<tr>
     					<td class="table-left">関連リンク</td>
     					<td class="table-right">
-    						<a href="https://choice-dinner.herokuapp.com/"></a>https://choice-dinner.herokuapp.com/
+    						<%= link_to @service.service_link do %>
+    							<a href="<%= @service.service_link %>"><%= @service.service_link %></a>
+    						<% end %>
     					</td>
     				</tr>
     				</tbody>
