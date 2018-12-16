@@ -3,6 +3,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @comments = Comment.all.order("id DESC")
+    @category= Category.find(params[:id])
+    @category_services = @category.services
   end
 
   def new

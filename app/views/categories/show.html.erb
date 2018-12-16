@@ -1,2 +1,35 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div id="top">
+  <%= render partial: "common/left-sidebar",locals: { comments: @comments } %>
+</div>
+<div class = "category-name">
+  <p class = "categoty-name-font"><%= @category.category_name%></p>
+</div>
+<div class="clearfix category-services">
+      <% @category_services.each do |service_trend| %>
+      <%= link_to service_path(service_trend.id), class: "link" do %>
+      <div class="card" style="width: 29%;">
+        <%= attachment_image_tag service_trend, :service_image, :fill,300,150, class: "card-img-top" %>
+          <div class="card-body">
+            <%= link_to service_trend.service_name, service_path(service_trend.id), class: "service-title link" %>
+            <p class="service-outline service-outline-trend"><%= service_trend.service_summary %></p>
+            <i class="far fa-comment"></i><%= service_trend.goodcount %>
+            <i class="far fa-star"></i><%= service_trend.favorites.count %><br>
+            <div class="goodbad-line">
+              <i class="far fa-thumbs-up"><%= service_trend.goods.count %></i>
+              <div class="goodbad-graph">
+                <% good_ratio = service_trend.goods.count*100/(service_trend.goods.count + service_trend.bads.count) %>
+                <span class="good-point" style="width: <%= good_ratio %>% ;">
+                  <%= good_ratio %>%
+                </span>
+              </div>
+              <i class="far fa-thumbs-down"><%= service_trend.bads.count %></i>
+            </div>
+          <div class="new-comment">
+              <span class="commenter-role"><%= service_trend.comments.first.user.status.status_name %> : </span><span class="commenter-id-random"><%= service_trend.comments.first.user.id %></span> <br>
+              <p class="new-comment-content" style="height:50px;"><%= truncate(service_trend.comments.first.comment_content, length: 40)  %></p>
+          </div>
+          </div>
+      </div>
+      <% end %>
+      <% end %>
+</div>
