@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_135510) do
     t.string "service_name"
     t.text "service_summary"
     t.string "service_campany"
-    t.text "service_linkr"
     t.text "related_link"
     t.integer "category_id"
     t.text "tag_list"

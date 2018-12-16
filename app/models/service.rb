@@ -9,6 +9,7 @@ class Service < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :replies, class_name: :Comment, foreign_key: :reply_comment, dependent: :destroy
+  belongs_to :category
 
   def gooded_by?(user)
           goods.where(user_id: user.id).exists?
