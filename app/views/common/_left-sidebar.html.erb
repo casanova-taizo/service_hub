@@ -1,19 +1,26 @@
 <div class="left-sidebar">
-  <%= link_to user_path(current_user) do%>
-  <div class = "left-sidebar__header">
-    <p class = "header_name"><%= current_user.status.status_name %></p>
-    <table>
-      <tr>
-        <td>4</td><td>4</td>
-      </tr>
-      <tr>
-        <th>いいね</th><th>コメント</th>
-      </tr>
-    </table>
-    <hr>
-  </div>
+  <% if user_signed_in? %>
+    <%= link_to user_path(current_user) do%>
+      <div class = "left-sidebar__header">
+      <p class = "header_name"><%= current_user.status.status_name %></p>
+      <table>
+        <tr>
+          <td>4</td><td>4</td>
+        </tr>
+        <tr>
+          <th>いいね</th><th>コメント</th>
+        </tr>
+      </table>
+      <hr>
+      </div>
   <% end %>
-  <div class = "new_messages">
+  <% else %>
+
+    <a href="/users/sign_in">
+      <p  style="text-align:center; margin-top:1rem;">ログインして<br>コメント,いいねをする</p>
+    </a>
+  <% end %>
+    <div class = "new_messages">
     <% comments.each do |comment|%>
     <%= link_to service_path(comment.service) do%>
     <div class = "new_message">

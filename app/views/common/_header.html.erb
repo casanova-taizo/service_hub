@@ -7,7 +7,11 @@
       <%= link_to services_path do %>
         <%= image_tag 'header-icon.png', class: "header-icon" %>
       <% end %>
-      <%= link_to "ログアウト", destroy_user_session_path , :method => "delete", class: "log_out_icon" %>
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト", destroy_user_session_path , :method => "delete", class: "log_out_icon" %>
+      <% else %>
+        <%= link_to "ログイン", user_session_path, class: "log_out_icon" %>
+      <% end %>
   </div>
   <div class="header-bottom">
     <ul class="nav">

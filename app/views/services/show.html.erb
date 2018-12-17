@@ -62,6 +62,7 @@
 			</div>
 		</div>
 		<div class="split"></div>
+		<% if user_signed_in? %>
 		<div class="evaluation-box">
 			<table class="evaluation-table">
 				<tr>
@@ -117,10 +118,43 @@
 				<% end %>
 			</div>
 		</div>
+		<% else %>
+		<div class="evaluation-box">
+			<table class="evaluation-table">
+				<tr>
+					<th>評価</th>
+					<th>お気に入り</th>
+					<th>シェアする</th>
+				</tr>
+				<tr>
+					<td>
+							<%= link_to user_session_path do  %>
+							<i class="far fa-thumbs-up" ></i>
+							<% end %>
+							<%= link_to user_session_path do  %>
+							<i class="far fa-thumbs-down" ></i>
+							<% end %>
+					</td>
+					<td>
+							<%= link_to user_session_path do %>
+							<i class="far fa-star"></i>
+							<% end %>
+					</td>
+					<td>
+						<a href="#" class="fas fa-copy"></a>
+						<a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="fab fa-facebook"></a>
+						<a href="https://twitter.com/share?url=<%= request.url %>&text=『<%=@service.service_name%>』について議論しよう" rel="nofollow" target="_blank" class="fab fa-twitter-square"></a>
+					</td>
+				</tr>
+			</table>
+			<a href="/users/sign_in" class="btn btn-lg btn-block comment-btn-modal">コメントする</a>
+		</div>
+		<% end %>
 		<div class="split"></div>
 		<div class="comment-service">
 			<div class="service-topic-comment">
 				<h3 class="topic-comment-section">話題のコメント</h3>
+				<% if user_signed_in? %>
 				<% @comment_trend.each do |comment| %>
 				<div class="topic-comment-box clearfix">
 					<div class="topic-comment-box-left">
@@ -208,9 +242,67 @@
 					<% end %>
 				</div>
 				<% end %>
+				<% else %>
+				<% @comment_trend.each do |comment| %>
+				<div class="topic-comment-box clearfix">
+					<div class="topic-comment-box-left">
+						<h5 class="commenter-role"><%= comment.user.status.status_name %></h5>
+						<p class="comment-number"><%= comment.id %></p>
+					</div>
+					<div class="topic-comment-box-right">
+						<h6 class="commenter-id"><%= comment.user.id %></h6>
+						<p class="comment-time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+						<div class="commenter-comment"><%= comment.comment_content %></div>
+						<div class="comment-reaction">
+							<i class="fas fa-reply rep-icon"><%= @comments_for_comment.where(reply_comment: comment.id).size %>
+							</i>
+								<%= link_to user_session_path do %>
+									<i class="far fa-thumbs-up"></i>
+									<%= comment.good_comments.count %>
+								<% end %>
+								<%= link_to user_session_path do %>
+									<i class="far fa-thumbs-down"></i>
+									<%= comment.bad_comments.count %>
+								<% end %>
+							<div class="comment-comment-box" id="<%= comment.id %>javascriptBox">
+								<form>
+									<input type="text" class="form-control comment-for-comment-form" placeholder="返信を追加...">									<%= link_to "返信する", user_session_path, class: "btn" %>
+								</form>
+							</div>
+						</div>
+					</div>
+					<% @comments_for_comment.where(reply_comment: comment.id).each do |comment_for_comment| %>
+					<div class="topic-comment-box-for-comment clearfix">
+						<div class="topic-comment-box-left-for-comment">
+							<h5 class="commenter-role">
+								<%= comment_for_comment.user.status.status_name %>
+							</h5>
+							<p class="comment-number"><%= comment_for_comment.id %></p>
+						</div>
+						<div class="topic-comment-box-right-for-comment">
+							<h6 class="commenter-id"><%= comment_for_comment.user.id %></h6>
+							<p class="comment-time-ago"><%= time_ago_in_words(comment_for_comment.created_at) %> ago</p>
+							<div class="commenter-comment"><%= comment_for_comment.comment_content %></div>
+							<div class="comment-reaction">
+									<%= link_to user_session_path do %>
+										<i class="far fa-thumbs-up"></i>
+										<%= comment_for_comment.good_comments.size %>
+									<% end %>
+									<%= link_to user_session_path do %>
+									<i class="far fa-thumbs-down"></i>
+									<%= comment_for_comment.bad_comments.count %>
+									<% end %>
+							</div>
+						</div>
+					</div>
+					<% end %>
+				</div>
+				<% end %>
+				<% end %>
 			</div>
 			<div class="service-topic-comment">
 				<h3 class="topic-comment-section">新着コメント</h3>
+				<% if user_signed_in? %>
 				<% @comments_latest.each do |comment_latest| %>
 				<div class="topic-comment-box clearfix">
 					<div class="topic-comment-box-short clearfix">
@@ -303,10 +395,89 @@
 					<% end %>
 				</div>
 				<% end %>
+				<% else %>
+				<% @comments_latest.each do |comment_latest| %>
+				<div class="topic-comment-box clearfix">
+					<div class="topic-comment-box-short clearfix">
+						<div class="topic-comment-box-left">
+							<h5 class="commenter-role">
+							<%= comment_latest.user.status.status_name %>
+							</h5>
+							<p class="comment-number"><%= comment_latest.id %></p>
+						</div>
+						<div class="topic-comment-box-right">
+							<h6 class="commenter-id"><%= comment_latest.user.id %></h6>
+							<p class="comment-time-ago"><%= time_ago_in_words(comment_latest.created_at) %> ago ago</p>
+							<div class="commenter-comment"><%= comment_latest.comment_content %></div>
+							<div class="comment-reaction">
+									<i class="fas fa-reply rep-icon"><%= @comments_for_comment.where(reply_comment: comment_latest.id).size %></i>
+									<%= link_to user_session_path do %>
+										<i class="far fa-thumbs-up"></i>
+										<%= comment_latest.good_comments.size %>
+									<% end %>
+
+									<%= link_to user_session_path do %>
+										<i class="far fa-thumbs-down"></i>
+										<%= comment_latest.bad_comments.size %>
+									<% end %>
+									<div class="comment-comment-box" id="<%= comment_latest.id %>javascriptBox">
+										<form>
+											<input type="text" class="form-control comment-for-comment-form" placeholder="返信を追加...">
+											<%= link_to "返信する", user_session_path, class: "btn" %>
+										</form>
+									</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- -------コメントに対するコメントの部分------ -->
+					<% @comments_for_comment.where(reply_comment: comment_latest.id).each do |comment| %>
+					<div class="topic-comment-box-for-comment clearfix">
+						<div class="topic-comment-box-left-for-comment">
+							<h5 class="commenter-role">
+								<%= comment.user.status.status_name %>
+							</h5>
+							<p class="comment-number"><%= comment.id %></p>
+						</div>
+						<div class="topic-comment-box-right-for-comment">
+							<h6 class="commenter-id"><%= comment.user.id %></h6>
+							<p class="comment-time-ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+							<div class="commenter-comment"><%= comment.comment_content %></div>
+							<div class="comment-reaction">
+									<%= link_to user_session_path do %>
+										<i class="far fa-thumbs-up"></i>
+										<%= comment.good_comments.size %>
+									<% end %>
+
+									<%= link_to user_session_path do %>
+									<i class="far fa-thumbs-down"></i>
+									<%= comment.bad_comments.count %>
+									<% end %>
+							</div>
+						</div>
+					</div>
+					<% end %>
+				</div>
+				<% end %>
+				<% end %>
 			</div>
 		</div>
 	</div>
-	<%= render partial: "common/right-sidebar",locals: { services: @services } %>
+	<div class="trend-right-show">
+				<h4 class="trend-right-title">新着サービス</h4>
+				<% @services.each do |thing| %>
+				<%= link_to service_path(thing), class: "textdecoration-none " do %>
+					<div class="trend-right-new-service textdecoration-none">
+						<p class="trend-right-service-title textdecoration-none"><%= thing.service_name %></p>
+						<p class="trend-right-service-body textdecoration-none">
+							<%= truncate(thing.service_summary, length: 47) %>
+						</p>
+						<p class="trend-right-service-releasedate"><%= thing.release_date %></p>
+					</div>
+					<hr>
+				<% end %>
+				<% end %>
+			</div>
 </div>
 
 <script src="/javascripts/skippr.min.js"></script>
