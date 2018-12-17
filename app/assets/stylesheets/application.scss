@@ -71,6 +71,7 @@ border-spacing: 0;
 .header-center {
   text-align:center;
   background-color: #221f20;
+  position: fixed;
 }
 .header-top {
   margin: 0 auto;
@@ -142,6 +143,10 @@ color:#7fbfff;
 .nav-link{
   display: inline !important;
   color: white !important;
+}
+.navbar {
+  position: fixed !important;
+  z-index: 1;
 }
 
 

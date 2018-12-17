@@ -1,5 +1,4 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_user!
   def index
     @comments = Comment.all.order("id DESC")
     # feed_contents = FeedContent.all

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'welcome/create'
   devise_for :users, :controllers => {
  :registrations => 'users/registrations'
 }
+  root'services#index'
   resources :contents
 
   resources :categories
@@ -21,5 +23,6 @@ Rails.application.routes.draw do
     resource :bads
     resource :favorites, only: [:create, :destroy]
   end
+  post 'welcome' => 'welcome#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
